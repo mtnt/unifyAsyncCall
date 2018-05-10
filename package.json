@@ -1,0 +1,45 @@
+{
+  "name": "unify-async-call",
+  "version": "1.0.0",
+  "description": "A function decorator for debouncing async call and get the same promise result for all calls.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "test": "test",
+    "fast-clean-install": "rm -rf ./node_modules && npm install",
+    "prepublishOnly": "npm run build",
+    "postpublish": "rm -rf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mtnt/unifyAsyncCall.git"
+  },
+  "keywords": [
+    "promise",
+    "async",
+    "debounce",
+    "uniq",
+    "unique"
+  ],
+  "author": "Kirill \"Mutant\" Glazunov <reg@webmutant.ru>",
+  "license": "MIT",
+  "prettier": {
+    "printWidth": 120,
+    "parser": "flow",
+    "bracketSpacing": false,
+    "trailingComma": "es5"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "prettier": "1.12.1"
+  },
+  "dependencies": {
+    "md5": "2.2.1"
+  }
+}
