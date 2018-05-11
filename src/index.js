@@ -1,6 +1,6 @@
 import md5 from "md5";
 
-const unifierCache = new Map();
+let unifierCache = new Map();
 export default function unifyAsyncCall(func, resolver = (...args) => JSON.stringify(args)) {
   return function(...args) {
     const key = md5(`${func.toString()}_${resolver(...args)}`);
@@ -31,4 +31,8 @@ export default function unifyAsyncCall(func, resolver = (...args) => JSON.string
 
     return result;
   };
+}
+
+export function setCacheObject(cache) {
+  unifierCache = cache;
 }
