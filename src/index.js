@@ -1,12 +1,12 @@
 import md5 from "md5";
 
-const unifierCache = {};
+const unifierCache = new Map();
 export default function unifyAsyncCall(func, resolver = (...args) => JSON.stringify(args)) {
   return function(...args) {
     const key = md5(`${func.toString()}_${resolver(...args)}`);
 
-    if (unifierCache.hasOwnProperty(key)) {
-      return unifierCache[key];
+    if (unifierCache.has(key)) {
+      return unifierCache.get(key);
     }
 
     let result = func(...args);
@@ -17,17 +17,17 @@ export default function unifyAsyncCall(func, resolver = (...args) => JSON.string
 
     result = result
       .catch(error => {
-        delete unifierCache[key];
+        unifierCache.delete(key);
 
         throw error;
       })
       .then(response => {
-        delete unifierCache[key];
+        unifierCache.delete(key);
 
         return response;
       });
 
-    unifierCache[key] = result;
+    unifierCache.set(key, result);
 
     return result;
   };
