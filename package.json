@@ -1,6 +1,6 @@
 {
   "name": "unify-async-call",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A function decorator for debouncing async call and get the same promise result for all calls.",
   "main": "dist/index.js",
   "scripts": {
